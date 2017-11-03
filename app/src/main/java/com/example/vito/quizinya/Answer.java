@@ -1,28 +1,24 @@
 package com.example.vito.quizinya;
 
+/**
+ * Created by vito on 11/3/17.
+ */
+
 public class Answer {
 
-    private String mText;
-    private boolean mIsTrue;
-
-    public Answer(String text, boolean isTrue){
-        this.mText = text;
-        this.mIsTrue = isTrue;
-    }
+    private String text;
+    private boolean isTrue;
 
     public String getText() {
-        return mText;
-    }
-
-    public void setText(String text) {
-        mText = text;
+        return text;
     }
 
     public boolean isTrue() {
-        return mIsTrue;
+        return isTrue;
     }
 
-    public void setTrue(boolean aTrue) {
-        mIsTrue = aTrue;
+    public Answer(String text, boolean isTrue) {
+        this.text = text;
+        this.isTrue = isTrue;
     }
 }
