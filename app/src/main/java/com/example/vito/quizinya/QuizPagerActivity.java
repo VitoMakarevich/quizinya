@@ -1,5 +1,6 @@
 package com.example.vito.quizinya;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,16 +12,25 @@ import android.view.Menu;
 
 import java.util.ArrayList;
 
-public class QuizPagerActivity extends AppCompatActivity {
+public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFragment.OnAnswerSelectedListener{
+    public static final String RIGHT_ANSWERS_COUNT = "com.example.quizinya.RIGHT_ANSWERS_COUNT";
+    public static final String ANSWERS_COUNT = "com.example.quizinya.ANSWERS_COUNT";
 
     private ViewPager mViewPager;
     private ArrayList<Question> mQuestions;
-    private int mQuestionId;
+    private Quiz mQuiz;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.prompt_menu, menu);
         return true;
+    }
+
+    public void onAnswerSelected(){
+        mQuiz.answerQuestion();
+        if(mQuiz.isFinished()){
+            showResults(mQuiz.getRightAnsweredQuestionsCount());
+        }
     }
 
     @Override
@@ -30,10 +40,10 @@ public class QuizPagerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mQuestionId = 0;
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        mQuestions = QuestionsFactory.get().getQuestions();
+        mQuiz= new Quiz(this);
+        mQuestions = (ArrayList<Question>) mQuiz.getQuestions();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
@@ -46,6 +56,12 @@ public class QuizPagerActivity extends AppCompatActivity {
                 return mQuestions.size();
             }
         });
-        mViewPager.setCurrentItem(0);
+    }
+
+    private void showResults(int count){
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra(ANSWERS_COUNT, mQuiz.getQuestions().size());
+        intent.putExtra(RIGHT_ANSWERS_COUNT, count);
+        startActivity(intent);
     }
 }

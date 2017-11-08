@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="question_1">
+        <item>Какие из знаков устанавливают в начале дороги с односторонним движением?</item>
+        <item>Только Б.</item>
+        <item>Только А.</item>
+        <item>Б или Г.</item>
+        <item>Б или В.</item>
+    </string-array>
+</resources>

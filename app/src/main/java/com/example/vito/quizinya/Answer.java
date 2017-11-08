@@ -6,19 +6,25 @@ package com.example.vito.quizinya;
 
 public class Answer {
 
-    private String text;
-    private boolean isTrue;
+    private String mText;
+    private boolean mIsTrue;
+    private int mId;
 
     public String getText() {
-        return text;
+        return mText;
     }
 
     public boolean isTrue() {
-        return isTrue;
+        return mIsTrue;
     }
 
-    public Answer(String text, boolean isTrue) {
-        this.text = text;
-        this.isTrue = isTrue;
+    public int getId() {
+        return mId;
+    }
+
+    public Answer(int id, String text, boolean isTrue) {
+        mId = id;
+        mText = text;
+        mIsTrue = isTrue;
     }
 }
