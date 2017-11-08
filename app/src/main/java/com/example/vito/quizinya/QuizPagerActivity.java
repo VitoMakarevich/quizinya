@@ -1,6 +1,7 @@
 package com.example.vito.quizinya;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
     public static final String ANSWERS_COUNT = "com.example.quizinya.ANSWERS_COUNT";
 
     private ViewPager mViewPager;
+    private ProgressBar mProgressBar;
     private ArrayList<Question> mQuestions;
     private Quiz mQuiz;
 
@@ -27,6 +30,13 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
     }
 
     public void onAnswerSelected(){
+        int MIN_SDK_ANIMATED_BAR = 24;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mProgressBar.setProgress(mProgressBar.getProgress() + 1, true);
+        }
+        else {
+            mProgressBar.setProgress(mProgressBar.getProgress() + 1);
+        }
         mQuiz.answerQuestion();
         if(mQuiz.isFinished()){
             showResults(mQuiz.getRightAnsweredQuestionsCount());
@@ -41,9 +51,12 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mProgressBar.setProgress(0);
         FragmentManager fragmentManager = getSupportFragmentManager();
         mQuiz= new Quiz(this);
         mQuestions = (ArrayList<Question>) mQuiz.getQuestions();
+        mProgressBar.setMax(mQuestions.size());
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
