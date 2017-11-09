@@ -17,7 +17,7 @@ public class QuizPagerFragment extends Fragment {
     public OnAnswerSelectedListener mCallback;
 
     public interface OnAnswerSelectedListener {
-        public void onAnswerSelected();
+        public void onAnswerSelected(boolean status);
     }
 
     private static final String QUESTION_ID = "id";
@@ -62,7 +62,6 @@ public class QuizPagerFragment extends Fragment {
                     v.findViewById(R.id.button4)};
         mImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),mQuestion.getBitmapId()));
         mTextView.setText(mQuestion.getText());
-
         if(mQuestion.isAnswered()){
             restoreFragment();
         }
@@ -91,6 +90,18 @@ public class QuizPagerFragment extends Fragment {
         }
     }
 
+    public void excludeAnswers(){
+        mQuestion.excludeAnswers();
+        updateButtons();
+    }
+
+    private void updateButtons(){
+        for(QuizButton button: mButtons){
+            if(button.getAnswer().isExcluded())
+                button.setEnabled(false);
+        }
+    }
+
     private void restoreFragment(){
         int counter = 0;
         for(QuizButton button : mButtons){
@@ -105,6 +116,7 @@ public class QuizPagerFragment extends Fragment {
                 }
             }
         }
+        updateButtons();
         showRightAnswer();
     }
 
@@ -122,7 +134,7 @@ public class QuizPagerFragment extends Fragment {
                     showRightAnswer();
                 }
                 disableAllButtons();
-                mCallback.onAnswerSelected();
+                mCallback.onAnswerSelected(resultStatus);
             }
         };
     }

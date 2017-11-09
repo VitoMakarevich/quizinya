@@ -85,6 +85,20 @@ public class Question {
         return mAnswers;
     }
 
+    public void excludeAnswers(){
+        excludeAnswer();
+        excludeAnswer();
+    }
+
+    private void excludeAnswer(){
+        for(Answer answer: mAnswers){
+            if(!answer.isTrue() && !answer.isExcluded()){
+                answer.setExcluded(true);
+                break;
+            }
+        }
+    }
+
     public int getId() {
         return mId;
     }

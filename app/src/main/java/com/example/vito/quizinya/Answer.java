@@ -8,6 +8,7 @@ public class Answer {
 
     private String mText;
     private boolean mIsTrue;
+    private boolean mIsExcluded;
     private int mId;
 
     public String getText() {
@@ -16,6 +17,14 @@ public class Answer {
 
     public boolean isTrue() {
         return mIsTrue;
+    }
+
+    public boolean isExcluded() {
+        return mIsExcluded;
+    }
+
+    public void setExcluded(boolean excluded) {
+        mIsExcluded = excluded;
     }
 
     public int getId() {
