@@ -109,10 +109,10 @@ public class QuizPagerFragment extends Fragment {
             button.setClickable(false);
             if(button.getAnswer().getId() == mQuestion.getAnswerId()){
                 if(mQuestion.isAnswerRight()){
-                    button.setBackgroundColor(getResources().getColor(R.color.colorRightAnswer));
+                    button.setTintColor(R.color.colorRightAnswer);
                 }
                 else{
-                    button.setBackgroundColor(getResources().getColor(R.color.colorWrongAnswer));
+                    button.setTintColor(R.color.colorWrongAnswer);
                 }
             }
         }
@@ -127,10 +127,10 @@ public class QuizPagerFragment extends Fragment {
                 mQuestion.answerQuestion(button.getAnswer().getId());
                 boolean resultStatus = mQuestion.isAnswerRight();
                 if(resultStatus){
-                    view.setBackgroundColor(getResources().getColor(R.color.colorRightAnswer));
+                    ((QuizButton)view).setTintColor(R.color.colorRightAnswer);
                 }
                 else{
-                    view.setBackgroundColor(getResources().getColor(R.color.colorWrongAnswer));
+                    ((QuizButton)view).setTintColor(R.color.colorWrongAnswer);
                     showRightAnswer();
                 }
                 disableAllButtons();
@@ -142,7 +142,7 @@ public class QuizPagerFragment extends Fragment {
     private void showRightAnswer(){
         for(QuizButton button : mButtons){
             if(button.getAnswer().isTrue()){
-                button.setBackgroundColor(getResources().getColor(R.color.colorRightAnswer));
+                button.setTintColor(R.color.colorRightAnswer);
                 break;
             }
         }
