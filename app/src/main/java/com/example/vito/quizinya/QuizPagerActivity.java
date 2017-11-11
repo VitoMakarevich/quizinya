@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -147,7 +146,6 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
 
     public void saveBitmap(Bitmap bitmap) {
 
-        Toast.makeText(this,R.string.app_name, Toast.LENGTH_LONG);
         mImagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
         FileOutputStream fos;
         try {

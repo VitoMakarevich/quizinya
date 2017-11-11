@@ -9,6 +9,8 @@
     <string name="help_text">В приложении %1$s у меня возник вопрос, подскажи, пожалуйста, какой ответ правильный</string>
     <string name="help_title">Спросить через</string>
     <string name="sorry_text">К сожалению, это невозможно сделать</string>
+    <string name="submit_result">Записать</string>
+    <string name="empty_name">Имя не может быть пустым</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

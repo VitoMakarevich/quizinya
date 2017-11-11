@@ -14,6 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class QuizPagerFragment extends Fragment {
+
+    //TODO добавить вокруг imageView и TextView рамку, сделать фон кнопок белым, на весь экран добавить какой-то фон
     public OnAnswerSelectedListener mCallback;
 
     public interface OnAnswerSelectedListener {
