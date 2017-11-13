@@ -1,7 +1,10 @@
 package com.example.vito.quizinya;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -15,16 +18,29 @@ public class QuestionsFactory {
 
     private QuestionsFactory(Context context){
         sContext = context;
+        reinit();
+    }
+
+    public void reinit(){
+        Resources r = sContext.getResources();
         ArrayList<Question> questions = new ArrayList<>(10);
         for(int i = 0; i < 10; i++) {
             ArrayList<Answer> answers = new ArrayList<>(4);
-            String[] array = sContext.getResources().getStringArray(R.array.question_1);
+            int stringId = r.getIdentifier("question_" + String.valueOf(i + 1), "array", sContext.getPackageName());
+            String[] array = r.getStringArray(stringId);
             answers.add(0, new Answer(0, array[1], true));
             for(int j = 1; j < 4; j++) {
                 answers.add(j, new Answer(j, array[j + 1], false));
             }
-            Question question = new Question(i, array[0], answers, R.drawable.im_03_09);
-            questions.add(i, question);
+            Drawable draw = null;
+            try {
+                draw = Drawable.createFromStream(sContext.getAssets().open("im_" +
+                        String.valueOf(i + 1) + ".jpg"), null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Question question = new Question(i, array[0], answers, draw);
+            questions.add(question);
         }
         mQuestions = questions;
     }

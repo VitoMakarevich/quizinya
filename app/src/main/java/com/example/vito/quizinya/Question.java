@@ -1,5 +1,7 @@
 package com.example.vito.quizinya;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,9 +14,10 @@ public class Question {
     private int mId;
     private String mText;
     private ArrayList<Answer> mAnswers;
-    private int mBitmapId;
+    private Drawable mDrawable;
     private int mAnswerId;
     private boolean mIsAnswered;
+    private boolean mIsExcluded;
 
     public String getText() {
         return mText;
@@ -32,20 +35,21 @@ public class Question {
         mAnswers = answers;
     }
 
-    public int getBitmapId() {
-        return mBitmapId;
+    public Drawable getDrawable() {
+        return mDrawable;
     }
 
-    public void setBitmapId(int bitmapId) {
-        mBitmapId = bitmapId;
+    public void setDrawable(Drawable drawable) {
+        mDrawable = drawable;
     }
 
-    public Question(int id, String text, ArrayList<Answer> answers, int bitmapId) {
+    public Question(int id, String text, ArrayList<Answer> answers, Drawable drawable) {
         mId = id;
         mText = text;
         mAnswers = answers;
-        mBitmapId = bitmapId;
+        mDrawable = drawable;
         mIsAnswered = false;
+        mIsExcluded = false;
     }
 
     public void answerQuestion(int id){
@@ -85,7 +89,13 @@ public class Question {
         return mAnswers;
     }
 
+    public boolean isExcluded() {
+        return mIsExcluded;
+    }
+
     public void excludeAnswers(){
+        mIsExcluded = true;
+
         excludeAnswer();
         excludeAnswer();
     }

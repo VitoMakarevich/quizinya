@@ -17,6 +17,7 @@ public class Quiz {
     private int mAnsweredQuestionsCount;
 
     public Quiz(Context context) {
+        QuestionsFactory.get(context).reinit();
         mQuestions = QuestionsFactory.get(context).getQuestions();
         mIsHelpUsed = false;
         mIsPromptUsed = false;

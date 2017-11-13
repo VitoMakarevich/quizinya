@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.vito.quizinya.realm.Result;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.Sort;
 
 public class ResultActivity extends AppCompatActivity {
     private TextView mTextView;
@@ -78,12 +80,24 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, QuizPagerActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarResult);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Intent intent = getIntent();
         int answersCount = intent.getIntExtra(QuizPagerActivity.ANSWERS_COUNT, 0);
-        final int rightAnswersCount = intent.getIntExtra(QuizPagerActivity.RIGHT_ANSWERS_COUNT, 0);
+        final int rightAnswersCount = intent.getIntExtra(QuizPagerActivity.RIGHT_ANSWERS_COUNT, 10);
         mEditText = (EditText) findViewById(R.id.editText);
         mTextView = (TextView) findViewById(R.id.textView2);
         mTextView.setText(getString(R.string.result_text, rightAnswersCount, answersCount));
@@ -122,7 +136,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void updateUI(){
-        List<Result> results =  mRealm.where(Result.class).findAllSorted("score");
+        List<Result> results =  mRealm.where(Result.class).findAllSorted("score", Sort.DESCENDING);
         mRecyclerView.setAdapter(new ResultAdapter(results));
     }
 

@@ -1,10 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="question_1">
+        <item>Как должен поступить водитель микроавтобуса при приближении навстречу транспортного средства оперативного назначения с включенными маячками синего цвета?</item>
+        <item>Продолжать движение.</item>
+        <item>Остановиться на полосе движения.</item>
+        <item>Снизить скорость.</item>
+        <item>Остановиться у правого края проезжей части.</item>
+    </string-array>
+    <string-array name="question_2">
         <item>Какие из знаков устанавливают в начале дороги с односторонним движением?</item>
         <item>Только Б.</item>
         <item>Только А.</item>
         <item>Б или Г.</item>
         <item>Б или В.</item>
+    </string-array>
+    <string-array name="question_3">
+        <item>Какие знаки запрещают поворот налево?</item>
+        <item>Только А.</item>
+        <item>Только А и Б.</item>
+        <item>Только А и В.</item>
+        <item>Все</item>
+    </string-array>
+    <string-array name="question_4">
+        <item>Какие знаки означают, что Вы должны уступить дорогу, если встречный разъезд затруднен?</item>
+        <item>А и В.</item>
+        <item>Только В.</item>
+        <item>Б и В.</item>
+        <item>Б и Г.</item>
+    </string-array>
+    <string-array name="question_5">
+        <item>Какие знаки разрешают движение грузовым автомобилям с технически допустимой общей массой до 3,5 т?</item>
+        <item>Только А и В.</item>
+        <item>Только А.</item>
+        <item>Только Б.</item>
+        <item>Все.</item>
+    </string-array>
+    <string-array name="question_6">
+        <item>Какие знаки обязывают водителя грузового автомобиля с технически допустимой общей массой до 3,5 т повернуть направо?</item>
+        <item>Только Б.</item>
+        <item>Только А.</item>
+        <item>А и Б.</item>
+        <item>Б и В.</item>
+    </string-array>
+    <string-array name="question_7">
+        <item>Какой из знаков отменяет несколько ограничений, введенных ранее запрещающими знаками?</item>
+        <item>Только В.</item>
+        <item>Только А и Б.</item>
+        <item>Только В и Г.</item>
+        <item>Все.</item>
+    </string-array>
+    <string-array name="question_8">
+        <item>Какие знаки используются для обозначения номера, присвоенного дороге (маршруту)?</item>
+        <item>Только А и Б.</item>
+        <item>Только А.</item>
+        <item>Только Б.</item>
+        <item>Все.</item>
+    </string-array>
+    <string-array name="question_9">
+        <item>Какие знаки информируют Вас, что на перекрестке необходимо уступить дорогу транспортным средствам, приближающимся слева?</item>
+        <item>Только Б.</item>
+        <item>Только А и Б.</item>
+        <item>Только А.</item>
+        <item>Все.</item>
+    </string-array>
+    <string-array name="question_10">
+        <item>Какой из знаков используется для обозначения кемпинга?</item>
+        <item>Только Б.</item>
+        <item>Только А и Б.</item>
+        <item>Только В.</item>
+        <item>Б и В.</item>
     </string-array>
 </resources>

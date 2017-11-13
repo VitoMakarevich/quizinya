@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".QuizPagerActivity">
     <item android:id="@+id/menu_call"
-        android:icon="@drawable/ic_call_black_24dp"
+        android:icon="@drawable/ic_call"
         android:title="@string/menu_call"
         app:showAsAction="always"/>
     <item android:id="@+id/menu_exclude"

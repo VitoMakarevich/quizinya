@@ -1,7 +1,6 @@
 package com.example.vito.quizinya;
 
 import android.app.Activity;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -62,13 +61,13 @@ public class QuizPagerFragment extends Fragment {
                     v.findViewById(R.id.button2),
                     v.findViewById(R.id.button3),
                     v.findViewById(R.id.button4)};
-        mImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),mQuestion.getBitmapId()));
+        mImageView.setImageDrawable(mQuestion.getDrawable());
         mTextView.setText(mQuestion.getText());
-        if(mQuestion.isAnswered()){
+        if(mQuestion.isAnswered() || mQuestion.isExcluded()){
             restoreFragment();
         }
         else {
-            int counter = 0;
+            int counter = 0;    
             mAnswers = mQuestion.shuffleAnswers();
             for (QuizButton button : mButtons) {
                 button.setAnswer(mAnswers.get(counter++));
@@ -108,35 +107,42 @@ public class QuizPagerFragment extends Fragment {
         int counter = 0;
         for(QuizButton button : mButtons){
             button.setAnswer(mAnswers.get(counter++));
-            button.setClickable(false);
-            if(button.getAnswer().getId() == mQuestion.getAnswerId()){
-                if(mQuestion.isAnswerRight()){
-                    button.setTintColor(R.color.colorRightAnswer);
+            if(mQuestion.isAnswered()){
+                button.setClickable(false);
+                if(button.getAnswer().getId() == mQuestion.getAnswerId()){
+                    if(mQuestion.isAnswerRight()){
+                        button.setTintColor(R.color.colorRightAnswer);
+                    }
+                    else{
+                        button.setTintColor(R.color.colorWrongAnswer);
+                    }
                 }
-                else{
-                    button.setTintColor(R.color.colorWrongAnswer);
-                }
+            }
+            else{
+                button.setOnClickListener(generateOnClickListener(button));
             }
         }
         updateButtons();
-        showRightAnswer();
+        if(mQuestion.isAnswered())
+            showRightAnswer();
     }
 
     private View.OnClickListener generateOnClickListener(final QuizButton button){
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mQuestion.answerQuestion(button.getAnswer().getId());
-                boolean resultStatus = mQuestion.isAnswerRight();
-                if(resultStatus){
-                    ((QuizButton)view).setTintColor(R.color.colorRightAnswer);
-                }
-                else{
-                    ((QuizButton)view).setTintColor(R.color.colorWrongAnswer);
-                    showRightAnswer();
-                }
                 disableAllButtons();
-                mCallback.onAnswerSelected(resultStatus);
+                if(!mQuestion.isAnswered()) {
+                    mQuestion.answerQuestion(button.getAnswer().getId());
+                    boolean resultStatus = mQuestion.isAnswerRight();
+                    if (resultStatus) {
+                        ((QuizButton) view).setTintColor(R.color.colorRightAnswer);
+                    } else {
+                        ((QuizButton) view).setTintColor(R.color.colorWrongAnswer);
+                        showRightAnswer();
+                    }
+                    mCallback.onAnswerSelected(resultStatus);
+                }
             }
         };
     }

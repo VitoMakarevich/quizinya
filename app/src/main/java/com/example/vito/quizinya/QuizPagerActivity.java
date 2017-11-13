@@ -33,6 +33,7 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
 
     private ViewPager mViewPager;
     private ProgressBar mProgressBar;
+    private Toolbar mToolbar;
     private ArrayList<Question> mQuestions;
     private Quiz mQuiz;
     private File mImagePath;
@@ -48,9 +49,10 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_exclude:
-                if(!isQuestionAnswered())
-                    excludeAnswers();
+                if(!isQuestionAnswered()) {
                     item.setEnabled(false);
+                    excludeAnswers();
+                }
                 return true;
             case R.id.menu_call:
                 if(!isQuestionAnswered()){
@@ -110,14 +112,15 @@ public class QuizPagerActivity extends AppCompatActivity implements QuizPagerFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_pager);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mWriteAllowed = checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         mProgressBar.setProgress(0);
         mProgressBar.setSecondaryProgress(0);
-        mWriteAllowed = checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         mQuiz= new Quiz(this);
         mQuestions = (ArrayList<Question>) mQuiz.getQuestions();

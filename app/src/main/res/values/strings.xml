@@ -11,6 +11,8 @@
     <string name="sorry_text">К сожалению, это невозможно сделать</string>
     <string name="submit_result">Записать</string>
     <string name="empty_name">Имя не может быть пустым</string>
+    <string name="start">Начать</string>
+    <string name="exit">Выйти</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

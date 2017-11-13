@@ -35,5 +35,6 @@ public class Answer {
         mId = id;
         mText = text;
         mIsTrue = isTrue;
+        mIsExcluded = false;
     }
 }
