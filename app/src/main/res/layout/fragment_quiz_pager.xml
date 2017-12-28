@@ -16,62 +16,68 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="4" />
+        app:layout_constraintVertical_weight="8" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_weight="2" />
+        app:layout_constraintVertical_weight="3" />
 
     <com.example.vito.quizinya.QuizButton
         android:id="@+id/button1"
         android:layout_width="0px"
         android:layout_height="0px"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="2" />
 
     <com.example.vito.quizinya.QuizButton
         android:id="@+id/button2"
         android:layout_width="0px"
         android:layout_height="0px"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="2" />
 
     <com.example.vito.quizinya.QuizButton
         android:id="@+id/button3"
         android:layout_width="0px"
         android:layout_height="0px"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="2" />
 
     <com.example.vito.quizinya.QuizButton
         android:id="@+id/button4"
         android:layout_width="0px"
         android:layout_height="0px"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="2" />
 </android.support.constraint.ConstraintLayout>
